@@ -14,4 +14,13 @@ public class SchemaTest {
         String type = schema.getTypeOf("l");
         assertEquals("java.lang.Boolean",type);
     }
+
+    @Test
+    public void should_Return_FlagTypeWithP(){
+        Set<FlagSchema> flagSchemaSet = new HashSet<FlagSchema>();
+        flagSchemaSet.add(new FlagSchema("p",ValueType.INTEGER));
+        Schema schema = new Schema(flagSchemaSet);
+        Object type = schema.getTypeOf("p");
+        assertEquals("java.lang.Integer",type);
+    }
 }
