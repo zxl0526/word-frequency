@@ -1,6 +1,8 @@
 package args;
 
 import java.lang.reflect.Type;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * @author adminzxl
@@ -33,5 +35,15 @@ public class FlagSchema {
 
     public Object getDefaultValue(){
         return valueType.getDefaultValue();
+    }
+
+    private void check(String args) {
+        //不能为-p-d
+        String regEx = "^.*-[A-Za-z]-.*$";
+        Pattern pattern = Pattern.compile(regEx);
+        Matcher matcher = pattern.matcher(args);
+        if (matcher.matches()) {
+            throw new IllegalArgumentException("Param should have space!");
+        }
     }
 }
