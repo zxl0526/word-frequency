@@ -64,5 +64,16 @@ public class ArgsTest {
 
         assertEquals(value,"usr/logs");
     }
+    @Test
+    public void shouldReturnDefaultValue_WhenUseGetValueOf(){
+        Set<FlagSchema> flagSchemaSet = new HashSet<FlagSchema>();
+        flagSchemaSet.add(new FlagSchema("l", ValueType.BOOLEAN));
+        Schema schema = new Schema(flagSchemaSet);
 
+        String argsTest = "-l  -p 8080 -d usr/logs";
+        Args args = new Args(argsTest,schema);
+        Object value = args.getValueOf("l");
+
+        assertEquals(value,true);
+    }
 }
