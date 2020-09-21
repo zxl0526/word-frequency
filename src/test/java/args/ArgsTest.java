@@ -38,4 +38,18 @@ public class ArgsTest {
 
         assertEquals(value,true);
     }
+    @Test
+    public void shouldReturnIntTypeValue_WhenScan_GetValueOfFlag(){
+
+        Set<FlagSchema> flagSchemaSet = new HashSet<FlagSchema>();
+        flagSchemaSet.add(new FlagSchema("p",ValueType.INTEGER));
+        Schema schema = new Schema(flagSchemaSet);
+
+        String argsTest = "-l true -p 8080 -d usr/logs";
+        Args args = new Args(argsTest,schema);
+        Object value = args.getValueOf("p");
+
+        assertEquals(value,8080);
+    }
+
 }
