@@ -89,4 +89,17 @@ public class ArgsTest {
 
         assertEquals(value,0);
     }
+    @Test
+    public void shouldReturnDefaultValueForNullStr_WhenUseGetValueOf(){
+        Set<FlagSchema> flagSchemaSet = new HashSet<FlagSchema>();
+        flagSchemaSet.add(new FlagSchema("d", ValueType.STRING));
+        Schema schema = new Schema(flagSchemaSet);
+
+        String argsTest = "-l true -p 8080 -d ";
+        Args args = new Args(argsTest,schema);
+        Object value = args.getValueOf("d");
+
+        assertEquals(value,"");
+    }
+
 }
