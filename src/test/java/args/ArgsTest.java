@@ -76,4 +76,17 @@ public class ArgsTest {
 
         assertEquals(value,true);
     }
+
+    @Test
+    public void shouldReturnDefaultValueFor0_WhenUseGetValueOf(){
+        Set<FlagSchema> flagSchemaSet = new HashSet<FlagSchema>();
+        flagSchemaSet.add(new FlagSchema("p", ValueType.INTEGER));
+        Schema schema = new Schema(flagSchemaSet);
+
+        String argsTest = "-l  -p  -d usr/logs";
+        Args args = new Args(argsTest,schema);
+        Object value = args.getValueOf("p");
+
+        assertEquals(value,0);
+    }
 }
